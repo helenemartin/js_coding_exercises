@@ -32,12 +32,12 @@ function reverseWord(word) {
   array.reverse();
   return array.join('');
 }
-
+//you are here now
 function reverseAllWords(words) {
   if (words === undefined) throw new Error("words is required");
-  var array = words[0].split('');
-  array.reverse();
-  return array.join('');
+  var letterScramble = words[0].split('');
+  letterScramble.reverse();
+  return [letterScramble.join('')];
 }
 
 function countLinuxUsers(users) {
