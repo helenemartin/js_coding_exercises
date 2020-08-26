@@ -12,7 +12,7 @@ function generateInitials(firstName, lastName) {
 function addVAT(originalPrice, vatRate) {
   if (originalPrice === undefined) throw new Error("originalPrice is requied");
   if (vatRate === undefined) throw new Error("vatRate is required");
-  return parseFloat((originalPrice * (1+(vatRate/100))).toFixed(2));
+  return parseFloat((originalPrice * (1+(vatRate/100))).toFixed(2),10);
 }
 
 function getSalePrice(originalPrice, reduction) {
@@ -35,7 +35,7 @@ function reverseWord(word) {
 
 function reverseAllWords(words) {
   if (words === undefined) throw new Error("words is required");
-  // Add your code here!
+  //Add your code here!
 }
 
 function countLinuxUsers(users) {
