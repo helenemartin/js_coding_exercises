@@ -32,7 +32,7 @@ function reverseWord(word) {
   array.reverse();
   return array.join('');
 }
-//you are here now
+
 function reverseAllWords(words) {
   if (words === undefined) throw new Error("words is required");
   var letterScramble = words[0].split('');
@@ -52,7 +52,11 @@ function getMeanScore(scores) {
 
 function simpleFizzBuzz(n) {
   if (n === undefined) throw new Error("n is required");
-  // Add your code here!
+  for (let i = 1; i<= 100; i++) {
+    if (i % 3) {
+      return "fizzbuzz";
+    }
+  }
 }
 
 module.exports = {
