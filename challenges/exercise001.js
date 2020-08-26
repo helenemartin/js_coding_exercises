@@ -35,9 +35,11 @@ function reverseWord(word) {
 
 function reverseAllWords(words) {
   if (words === undefined) throw new Error("words is required");
-  var letterScramble = words[0].split('');
-  letterScramble.reverse();
-  return [letterScramble.join('')];
+  return words.map( word =>{
+    let letterScramble = word.split('');
+    return letterScramble.reverse().join('');
+
+  }) 
 }
 
 function countLinuxUsers(users) {

@@ -88,11 +88,11 @@ describe("reverseWord", () => {
 });
 
 describe("reverseAllWords", () => {
-  xtest("reverses a single word in an array", () => {
+  test("reverses a single word in an array", () => {
     expect(reverseAllWords(["jest"])).toEqual(["tsej"]);
   });
 
-  xtest("reverses a multiple words in an array", () => {
+  test("reverses a multiple words in an array", () => {
     expect(
       reverseAllWords(["jest", "mocha", "rspec", "jasmine", "selenium"])
     ).toEqual(["tsej", "ahcom", "cepsr", "enimsaj", "muineles"]);
@@ -136,19 +136,19 @@ describe("getMeanScore", () => {
 });
 
 describe("simpleFizzBuzz", () => {
-  test("returns 'fizz' if the number is divisible by 3", () => {
+  xtest("returns 'fizz' if the number is divisible by 3", () => {
     expect(simpleFizzBuzz(3)).toBe("fizz");
   });
 
-  test("returns 'buzz' if the number is divisible by 5", () => {
+  xtest("returns 'buzz' if the number is divisible by 5", () => {
     expect(simpleFizzBuzz(5)).toBe("buzz");
   });
 
-  test("returns the number if the number is divisible by neither 3 nor 5", () => {
+  xtest("returns the number if the number is divisible by neither 3 nor 5", () => {
     expect(simpleFizzBuzz(4)).toBe(4);
   });
 
-  test("returns 'fizzbuzz' if the number is divisible by 3 and 5", () => {
+  xtest("returns 'fizzbuzz' if the number is divisible by 3 and 5", () => {
     expect(simpleFizzBuzz(15)).toBe("fizzbuzz");
   });
 });
