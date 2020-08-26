@@ -28,7 +28,7 @@ function getMiddleCharacter(str) {
 
 function reverseWord(word) {
   if (word === undefined) throw new Error("word is required");
-  var array = word.split('');
+  let array = word.split('');
   array.reverse();
   return array.join('');
 }
@@ -54,7 +54,6 @@ function getMeanScore(scores) {
 
 function simpleFizzBuzz(n) {
   if (n === undefined) throw new Error("n is required");
-  // for (let n = 1; n<= 100; n++) {
     if ( n % 3 === 0 && n % 5 === 0){
       return "fizzbuzz";
     }else if (n % 3 === 0){
@@ -64,7 +63,7 @@ function simpleFizzBuzz(n) {
     }else {
       return(n);
     }
-  // }
+  }
 }
 
 module.exports = {
