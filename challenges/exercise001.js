@@ -6,13 +6,13 @@ function capitalize(word) {
 function generateInitials(firstName, lastName) {
   if (firstName === undefined) throw new Error("firstName is required");
   if (lastName === undefined) throw new Error("lastName is required");
-  return firstName[0] + " . " + lastName[0];
+  return firstName[0] + "." + lastName[0];
 }
 
 function addVAT(originalPrice, vatRate) {
   if (originalPrice === undefined) throw new Error("originalPrice is requied");
   if (vatRate === undefined) throw new Error("vatRate is required");
-  // Add your code here!
+  return parseFloat((originalPrice * (1+(vatRate/100))).toFixed(2));
 }
 
 function getSalePrice(originalPrice, reduction) {
@@ -28,7 +28,9 @@ function getMiddleCharacter(str) {
 
 function reverseWord(word) {
   if (word === undefined) throw new Error("word is required");
-  // Add your code here!
+  var array = word.split('');
+  array.reverse();
+  return array.join('');
 }
 
 function reverseAllWords(words) {
