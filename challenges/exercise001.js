@@ -18,7 +18,7 @@ function addVAT(originalPrice, vatRate) {
 function getSalePrice(originalPrice, reduction) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (reduction === undefined) throw new Error("reduction is required");
-  // Add your code here!
+  return parseFloat((originalPrice * (1-(reduction/100))).toFixed(2), 10);
 }
 
 function getMiddleCharacter(str) {
@@ -35,7 +35,9 @@ function reverseWord(word) {
 
 function reverseAllWords(words) {
   if (words === undefined) throw new Error("words is required");
-  //Add your code here!
+  var array = words[0].split('');
+  array.reverse();
+  return array.join('');
 }
 
 function countLinuxUsers(users) {
