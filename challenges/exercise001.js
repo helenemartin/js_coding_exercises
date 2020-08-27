@@ -53,7 +53,7 @@ function countLinuxUsers(users) {
        counter ++;
       }
    })
-  return user.type;
+  return counter;
 }
 
 function getMeanScore(scores) {
