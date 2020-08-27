@@ -38,7 +38,6 @@ function reverseAllWords(words) {
   return words.map( word =>{
     let letterScramble = word.split('');
     return letterScramble.reverse().join('');
-
   }) 
 }
 
@@ -63,8 +62,8 @@ function simpleFizzBuzz(n) {
     }else {
       return(n);
     }
-  }
 }
+
 
 module.exports = {
   capitalize,
