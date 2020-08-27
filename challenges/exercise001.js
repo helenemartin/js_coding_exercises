@@ -47,8 +47,11 @@ function reverseAllWords(words) {
 
 function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
-   if (users.includes('Linux') -1) {
+   if (!users.includes('Linux')) {
      return 0;
+   }
+   if (users.type.includes('Linux')) {
+     return 5;
    }
 }
 
