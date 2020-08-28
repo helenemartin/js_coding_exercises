@@ -62,10 +62,11 @@ function getMeanScore(scores) {
       if(scores.length === 0){
             return sum;   
       }
-    for (let i = 0; i < scores.length; i++){
+    scores.forEach(score => {
         sum += scores[i];
     }
-    return parseFloat((sum / scores.length).toFixed(2));
+  return parseFloat((sum / scores.length).toFixed(2));
+  }
 }
 
 function simpleFizzBuzz(n) {
