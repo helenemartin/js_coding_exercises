@@ -58,15 +58,14 @@ function countLinuxUsers(users) {
 
 function getMeanScore(scores) {
   if (scores === undefined) throw new Error("scores is required");
-    let sum = 0;
-      if(scores.length === 0){
-            return sum;   
-      }
-    scores.forEach(score => {
-        sum += scores[i];
+  let sum = 0;
+    if(scores.length === 0){
+      return sum;   
     }
+  scores.forEach (score => {
+    sum += score;
+  })
   return parseFloat((sum / scores.length).toFixed(2));
-  }
 }
 
 function simpleFizzBuzz(n) {
