@@ -11,12 +11,15 @@ function camelCaseWords(words) {
     for (let i = 0; i < words.length; i++) {
       word += words[i].charAt(0).toUpperCase() + words[i].slice(0);
     }
-    return words;
+    return word;
 }
 
 function getTotalSubjects(people) {
-  if (people === undefined) throw new Error("people is required");
-  // Your code here!
+  let subjects = 0;
+  people.forEach(function (p) {
+    subjects += p.subjects.length;
+  });
+  return subjects;
 }
 
 function checkIngredients(menu, ingredient) {
@@ -28,7 +31,8 @@ function checkIngredients(menu, ingredient) {
 function duplicateNumbers(arr1, arr2) {
   if (arr1 === undefined) throw new Error("arr1 is required");
   if (arr2 === undefined) throw new Error("arr2 is required");
-  // Your code here!
+  let result = arr1.filter(element => arr2.includes(element)).sort();
+  return [...new Set(result)];
 }
 
 module.exports = {

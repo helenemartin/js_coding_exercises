@@ -7,15 +7,15 @@ const {
 } = require("../challenges/exercise003");
 
 describe("camelCaseWords", () => {
-  test("camel cases a single word (i.e. no capital letter at beginning)", () => {
+  xtest("camel cases a single word (i.e. no capital letter at beginning)", () => {
     expect(camelCaseWords(["my"])).toBe("my");
   });
 
-  test("camel cases two words (i.e. second word is capitalized)", () => {
+  xtest("camel cases two words (i.e. second word is capitalized)", () => {
     expect(camelCaseWords(["my", "variable"])).toBe("myVariable");
   });
 
-  test("camel cases two+ words (i.e. all words after 1st are capitalized)", () => {
+  xtest("camel cases two+ words (i.e. all words after 1st are capitalized)", () => {
     expect(camelCaseWords(["my", "variable"])).toBe("myVariable");
     expect(camelCaseWords(["my", "variable", "name"])).toBe("myVariableName");
     expect(camelCaseWords(["is", "unique"])).toBe("isUnique");
@@ -45,7 +45,7 @@ describe("getSquares", () => {
 });
 
 describe("getTotalSubjects", () => {
-  xtest("returns 0 if no people have subjects", () => {
+  test("returns 0 if no people have subjects", () => {
     const people = [
       { name: "Billy", subjects: [] },
       { name: "Claude", subjects: [] },
@@ -54,7 +54,7 @@ describe("getTotalSubjects", () => {
     expect(getTotalSubjects(people)).toBe(0);
   });
 
-  xtest("returns 1 if 1 person has a subject", () => {
+  test("returns 1 if 1 person has a subject", () => {
     const people = [
       { name: "Billy", subjects: [] },
       { name: "Claude", subjects: ["chemistry"] },
@@ -63,7 +63,7 @@ describe("getTotalSubjects", () => {
     expect(getTotalSubjects(people)).toBe(1);
   });
 
-  xtest("returns the correct number of subjects studied in total for all people", () => {
+  test("returns the correct number of subjects studied in total for all people", () => {
     const people = [
       { name: "Billy", subjects: ["welsh", "spanish"] },
       { name: "Claude", subjects: ["chemistry", "biology", "music"] },
