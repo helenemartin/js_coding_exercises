@@ -22,13 +22,21 @@ const sumArrays = arrs => {
 
 const arrShift = arr => {
   if (arr === undefined) throw new Error("arr is required");
-  // Your code here!
+  // Your code here! 
 };
 
 const findNeedle = (haystack, searchTerm) => {
   if (haystack === undefined) throw new Error("haystack is required");
   if (searchTerm === undefined) throw new Error("searchTerm is required");
-  // Your code here!
+  let found = false;
+    for (let key in haystack) {
+      const f = haystack[key];
+      if (typeof f === 'string' && f.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
+        found = true;
+      }
+
+    }
+  return found;
 };
 
 const getWordFrequencies = str => {
