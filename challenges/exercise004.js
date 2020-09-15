@@ -6,7 +6,8 @@ function findSmallNums(nums) {
 function findNamesBeginningWith(names, char) {
   if (!names) throw new Error("names is required");
   if (!char) throw new Error("char is required");
-  // Your code here
+  let upperChar = char.toUpperCase();
+  return names.filter(element => element.charAt(0).toUpperCase() === upperChar);
 }
 
 function findVerbs(words) {
