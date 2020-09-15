@@ -1,7 +1,7 @@
 const findNextNumber = (nums, n) => {
   if (nums === undefined) throw new Error("nums is required");
   if (n === undefined) throw new Error("n is required");
-  const i = nums.indexOf(n);
+  const i = nums.findIndex(element => element == n);
   return (i === -1 || i +1 >= nums.length) ? null : nums[i + 1];
 };
 
@@ -12,7 +12,7 @@ const count1sand0s = str => {
 
 const reverseNumber = n => {
   if (n === undefined) throw new Error("n is required");
-  // Your code here!
+  return parseFloat(n.toString().split('').reverse().join(''));
 };
 
 const sumArrays = arrs => {
