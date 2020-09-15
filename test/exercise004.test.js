@@ -19,7 +19,7 @@ describe("findSmallNums", () => {
 });
 
 describe("findNamesBeginningWith", () => {
-  test("returns an array of names beginning with the specified character", () => {
+  xtest("returns an array of names beginning with the specified character", () => {
     const names = ["Sally", "Dave", "Susan", "Geoff", "Riley", "Sam"];
     expect(findNamesBeginningWith(names, "S")).toEqual([
       "Sally",
@@ -32,7 +32,7 @@ describe("findNamesBeginningWith", () => {
 });
 
 describe("findVerbs", () => {
-  test("returns an array of words that are considered verbs (because they begin with 'to ')", () => {
+  xtest("returns an array of words that are considered verbs (because they begin with 'to ')", () => {
     const words = [
       "to eat",
       "fajita",
@@ -45,7 +45,7 @@ describe("findVerbs", () => {
     expect(findVerbs(["bottle", "fish", "grain"])).toEqual([]);
   });
 
-  test("does not mistake words that include 'to' elsewhere", () => {
+  xtest("does not mistake words that include 'to' elsewhere", () => {
     const words = [
       "to eat",
       "tower",
@@ -59,7 +59,7 @@ describe("findVerbs", () => {
 });
 
 describe("getIntegers", () => {
-  test("returns an array containing only integers", () => {
+  xtest("returns an array containing only integers", () => {
     const nums = [1, 3.5, 2.1, 1, 4, 9];
     expect(getIntegers(nums)).toEqual([1, 1, 4, 9]);
     expect(getIntegers([])).toEqual([]);
@@ -132,7 +132,7 @@ describe("findSentencesContaining", () => {
     "The bugs field should hold the url to your project’s issue tracker and / or the email address to which issues should be reported."
   ];
 
-  test("returns only the sentences containing the specified string", () => {
+  xtest("returns only the sentences containing the specified string", () => {
     expect(
       findSentencesContaining(sentencesAboutPackageJson, "license")
     ).toEqual([
@@ -144,7 +144,7 @@ describe("findSentencesContaining", () => {
     ).toEqual([]);
   });
 
-  test("it should not be case sensitive", () => {
+  xtest("it should not be case sensitive", () => {
     expect(
       findSentencesContaining(sentencesAboutPackageJson, "dependencies")
     ).toEqual([
@@ -155,7 +155,7 @@ describe("findSentencesContaining", () => {
 });
 
 describe("getLongestSides", () => {
-  test("returns the longest side of each set of triangle data", () => {
+  xtest("returns the longest side of each set of triangle data", () => {
     const data = [[6, 7, 10], [9, 3, 6], [6, 3, 5], [6, 13, 12], [7, 12, 8]];
     expect(getLongestSides(data)).toEqual([10, 9, 6, 13, 12]);
 
