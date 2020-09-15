@@ -7,15 +7,15 @@ const {
 } = require("../challenges/exercise003");
 
 describe("camelCaseWords", () => {
-  xtest("camel cases a single word (i.e. no capital letter at beginning)", () => {
+  test("camel cases a single word (i.e. no capital letter at beginning)", () => {
     expect(camelCaseWords(["my"])).toBe("my");
   });
 
-  xtest("camel cases two words (i.e. second word is capitalized)", () => {
+  test("camel cases two words (i.e. second word is capitalized)", () => {
     expect(camelCaseWords(["my", "variable"])).toBe("myVariable");
   });
 
-  xtest("camel cases two+ words (i.e. all words after 1st are capitalized)", () => {
+  test("camel cases two+ words (i.e. all words after 1st are capitalized)", () => {
     expect(camelCaseWords(["my", "variable"])).toBe("myVariable");
     expect(camelCaseWords(["my", "variable", "name"])).toBe("myVariableName");
     expect(camelCaseWords(["is", "unique"])).toBe("isUnique");
@@ -26,11 +26,11 @@ describe("camelCaseWords", () => {
 });
 
 describe("getSquares", () => {
-  test("returns an empty array if empty array passed", () => {
+  xtest("returns an empty array if empty array passed", () => {
     expect(getSquares([])).toEqual([]);
   });
 
-  test("returns an array of squares of the original numbers", () => {
+  xtest("returns an array of squares of the original numbers", () => {
     expect(getSquares([2, 4, 6])).toEqual([4, 16, 36]);
     expect(getSquares([2, 4, 6, 1])).toEqual([4, 16, 36, 1]);
     expect(getSquares([2, 3, 6, 7, 12, 4])).toEqual([4, 9, 36, 49, 144, 16]);
