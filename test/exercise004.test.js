@@ -155,7 +155,7 @@ describe("findSentencesContaining", () => {
 });
 
 describe("getLongestSides", () => {
-  xtest("returns the longest side of each set of triangle data", () => {
+  test("returns the longest side of each set of triangle data", () => {
     const data = [[6, 7, 10], [9, 3, 6], [6, 3, 5], [6, 13, 12], [7, 12, 8]];
     expect(getLongestSides(data)).toEqual([10, 9, 6, 13, 12]);
 
