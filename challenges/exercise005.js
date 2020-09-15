@@ -1,7 +1,8 @@
 const findNextNumber = (nums, n) => {
   if (nums === undefined) throw new Error("nums is required");
   if (n === undefined) throw new Error("n is required");
-  // Your code here!
+  const i = nums.indexOf(n);
+  return (i === -1 || i +1 >= nums.length) ? null : nums[i + 1];
 };
 
 const count1sand0s = str => {
