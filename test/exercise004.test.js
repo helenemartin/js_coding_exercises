@@ -19,7 +19,7 @@ describe("findSmallNums", () => {
 });
 
 describe("findNamesBeginningWith", () => {
-  xtest("returns an array of names beginning with the specified character", () => {
+  test("returns an array of names beginning with the specified character", () => {
     const names = ["Sally", "Dave", "Susan", "Geoff", "Riley", "Sam"];
     expect(findNamesBeginningWith(names, "S")).toEqual([
       "Sally",
@@ -132,7 +132,7 @@ describe("findSentencesContaining", () => {
     "The bugs field should hold the url to your project’s issue tracker and / or the email address to which issues should be reported."
   ];
 
-  xtest("returns only the sentences containing the specified string", () => {
+  test("returns only the sentences containing the specified string", () => {
     expect(
       findSentencesContaining(sentencesAboutPackageJson, "license")
     ).toEqual([
@@ -144,7 +144,7 @@ describe("findSentencesContaining", () => {
     ).toEqual([]);
   });
 
-  xtest("it should not be case sensitive", () => {
+  test("it should not be case sensitive", () => {
     expect(
       findSentencesContaining(sentencesAboutPackageJson, "dependencies")
     ).toEqual([
