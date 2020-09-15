@@ -34,7 +34,7 @@ describe("isFromManchester", () => {
     expect(isFromManchester(person)).toBe(true);
   });
 
-  test("returns false if the person is not Manchester", () => {
+   test("returns false if the person is not Manchester", () => {
     const person = {
       name: "Anisa",
       city: "Leeds",

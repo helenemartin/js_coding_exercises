@@ -5,26 +5,23 @@ function getFillings(sandwich) {
 
 function isFromManchester(person) {
   if (person === undefined) throw new Error("person is required");
-  return Object.details(person).
-    Map(details[0] === 'city' && details[1] === "Manchester").
-    reduce ((person, city) => person || city);
+  return person.city == 'Manchester';
 }
 
 function getBusNumbers(people) {
   if (people === undefined) throw new Error("people is required");
-  const averageBusPass = 40;
-  let num = Math.floor(people / averageBusPass);
-  return (people % averageBusPass === 0) ? num : ++num;
+  return Math.ceil(people / 40);
 }
 
 function countSheep(arr) {
   if (arr === undefined) throw new Error("arr is required");
-  // Your code here!
+  return arr.filter(animal => animal == 'sheep').length;
 }
 
 function hasMPostCode(person) {
   if (person === undefined) throw new Error("person is required");
-  return (person.address.city === "Manchester" && person.address.postCode.charAt(0) === 'M');
+  let re = new RegExp('^M\\d');
+  return re.test(person.address.postCode);
 }
 
 module.exports = {
