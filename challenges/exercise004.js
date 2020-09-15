@@ -1,6 +1,6 @@
 function findSmallNums(nums) {
   if (!nums) throw new Error("nums is required");
-  // Your code here
+  return nums.filter(element => element < 1);
 }
 
 function findNamesBeginningWith(names, char) {
@@ -21,7 +21,7 @@ function getIntegers(nums) {
 
 function getCities(users) {
   if (!users) throw new Error("users is required");
-  // Your code here
+  return users.map(element => element.data.city.displayName);
 }
 
 function getSquareRoots(nums) {
