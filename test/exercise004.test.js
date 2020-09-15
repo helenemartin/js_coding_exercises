@@ -32,7 +32,7 @@ describe("findNamesBeginningWith", () => {
 });
 
 describe("findVerbs", () => {
-  xtest("returns an array of words that are considered verbs (because they begin with 'to ')", () => {
+  test("returns an array of words that are considered verbs (because they begin with 'to ')", () => {
     const words = [
       "to eat",
       "fajita",
@@ -45,7 +45,7 @@ describe("findVerbs", () => {
     expect(findVerbs(["bottle", "fish", "grain"])).toEqual([]);
   });
 
-  xtest("does not mistake words that include 'to' elsewhere", () => {
+  test("does not mistake words that include 'to' elsewhere", () => {
     const words = [
       "to eat",
       "tower",

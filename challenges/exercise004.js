@@ -11,7 +11,8 @@ function findNamesBeginningWith(names, char) {
 
 function findVerbs(words) {
   if (!words) throw new Error("words is required");
-  // Your code here
+  const infinitive = "to ";
+  return words.filter(element => element.slice(0, 3) === infinitive);
 }
 
 function getIntegers(nums) {
