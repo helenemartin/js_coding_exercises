@@ -6,6 +6,13 @@
  */
 const sumMultiples = arr => {
   if (arr === undefined) throw new Error("arr is required");
+  let total = 0;
+  arr.forEach ((n) =>{
+    if (n % 3 === 0 || n % 5 === 0) {
+      total += n;
+    }
+  });
+  return total;
 };
 
 /**
