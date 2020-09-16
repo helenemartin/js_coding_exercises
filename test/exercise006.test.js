@@ -1,7 +1,7 @@
 const {
     sumMultiples,
     isValidDNA,
-    getComplimentaryDNA,
+    getComplementaryDNA,
     isItPrime,
     createMatrix,
     areWeCovered
