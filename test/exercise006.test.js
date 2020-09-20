@@ -139,4 +139,20 @@ describe("areWeCovered", () => {
   test("return false for empty staff array on Wednesday", () => {
       expect(areWeCovered([], 'Wednesday')).toBe(false);
   });
+  test("return false for minimum cover on Wednesday", () => {
+    const staff = [
+        { name: "Ruby", rota: ["Wednesday"] },
+        { name: "Bob", rota: ["Tuesday"] },
+        { name: "Michael", rota: ["Tuesday"] }
+    ];
+    expect(areWeCovered(staff, 'Wednesday')).toBe(false);
+  });
+  test("return false for no cover on Wednesday", () => {
+      const staff = [
+          { name: "Ruby", rota: ["Tuesday"] },
+          { name: "Bob", rota: ["Tuesday"] },
+          { name: "Michael", rota: ["Tuesday"] }
+      ];
+      expect(areWeCovered(staff, 'Wednesday')).toBe(false);
+  });
 });
