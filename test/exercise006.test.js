@@ -25,6 +25,14 @@ describe("sumMultiples", () => {
     expect(sumMultiples([1, 2, 4])).toBe(0);
 
   });
+  test ("return error with an empty array", () => {
+    expect(sumMultiples([1, 2, 4])).toBe(0);
 
+  });
+  test ("return 0 when no numbers are multiples of 3 and 5", () => {
+    expect(() => {
+      sumMultiples();
+    }).toThrow("arr is required");
 
+  });
 });
