@@ -36,3 +36,10 @@ describe("sumMultiples", () => {
 
   });
 });
+
+describe("isValidDNA", () => {
+  test ("return error with empty argument", () => {
+    expect (() => { isValidDNA();}).toThrow("str is required");
+
+  });
+});
