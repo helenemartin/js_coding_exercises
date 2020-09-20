@@ -22,6 +22,9 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  let re = new RegexExp('[ACGT*');
+  const replace = str.replace(re, '');
+  return replaced.length === 0;
 };
 
 /**
