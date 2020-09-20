@@ -103,7 +103,7 @@ describe("isItPrime", () => {
   });
   test("return false for negative num", () => {
       expect(isItPrime(-7)).toBe(false);
-      expect(isItPrime(-0)).toBe(false);  // negative zero!
+      expect(isItPrime(-0)).toBe(false); 
   });
 });
 
