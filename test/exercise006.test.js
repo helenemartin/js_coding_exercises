@@ -60,6 +60,48 @@ describe("isValidDNA", () => {
   });
 });
 
+describe("getComplementaryDNA", () => {
+  test("return error with an empty argument", () => {
+      expect(() => {
+          getComplementaryDNA();
+      }).toThrow("str is required");
+  });
+  test("return error with a non string argument", () => {
+      expect(() => {
+          getComplementaryDNA(42);
+      }).toThrow("a string is required");
+      expect(() => {
+          getComplementaryDNA(['foo']);
+      }).toThrow("a string is required");
+      expect(() => {
+          getComplementaryDNA(true);
+      }).toThrow("a string is required");
+  });
+  test("return complementary DNA pairs - A <-> T", () => {
+      expect(getComplementaryDNA('A')).toBe('T');
+      expect(getComplementaryDNA('T')).toBe('A');
+      expect(getComplementaryDNA('AT')).toBe('TA');
+      expect(getComplementaryDNA('TATTA')).toBe('ATAAT');
+  });
+  test("return complementary DNA pairs - C <-> G", () => {
+      expect(getComplementaryDNA('C')).toBe('G');
+      expect(getComplementaryDNA('G')).toBe('C');
+      expect(getComplementaryDNA('GCGCGC')).toBe('CGCGCG');
+  });
+  test("return valid complementary DNA", () => {
+      expect(getComplementaryDNA('GATTACA')).toBe('CTAATGT');
+  });
+  test("return error with invalid DNA", () => {
+      expect(() => {
+          getComplementaryDNA('GATSBY');
+      }).toThrow("valid DNA is required");
+  });
+  test("return error with invalid DNA - lowecase", () => {
+      expect(() => {
+          getComplementaryDNA('Gattaca');
+      }).toThrow("valid DNA is required");
+  });
+});
 
 describe("isItPrime", () => {
   test("return error with an empty argument", () => {
