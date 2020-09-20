@@ -44,37 +44,6 @@ describe("createRange", () => {
   });
 });
 
-/**
- * This function takes an array of user objects and their usage in minutes of various applications. 
- * The format of the data should be as follows:
- * [
- *  {
- *    username: "beth_1234",
- *    name: "Beth Smith",
- *    screenTime: [
- *                 { date: "2019-05-01", usage: { twitter: 34, instagram: 22, facebook: 40} },
- *                 { date: "2019-05-02", usage: { twitter: 56, instagram: 40, facebook: 31} },
- *                 { date: "2019-05-03", usage: { twitter: 12, instagram: 15, facebook: 19} },
- *                 { date: "2019-05-04", usage: { twitter: 10, instagram: 56, facebook: 61} },
- *                ]
- *   },
- *   {
- *    username: "sam_j_1989",
- *    name: "Sam Jones",
- *    screenTime: [
- *                 { date: "2019-06-11", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 10} },
- *                 { date: "2019-06-13", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 16} },
- *                 { date: "2019-06-14", usage: { mapMyRun: 0, whatsApp: 0, facebook: 0, safari: 31} },
- *                ]
- *   },
- * ]
- *
- * The function should return an array of usernames of users who have used more than 100 minutes of screentime for a given date.
- * The date will be provided in the format "2019-05-04" (YYYY-MM-DD)
- * For example, if passed the above users and the date "2019-05-04" the function should return ["beth_1234"]
- *  as she used over 100 minutes of screentime on that date.
- * @param {Array} users
- */
 describe("getScreentimeAlertList", () => {
   test("return error with an empty arguments", () => {
       expect(() => { getScreentimeAlertList(); }).toThrow("users is required");
@@ -173,4 +142,100 @@ describe("hexToRGB", () => {
       expect(hexToRGB('#FFFFFF')).toBe("rgb(255,255,255)");
       expect(hexToRGB('#00bfff')).toBe("rgb(0,191,255)");
   });
+});
+
+describe("findWinner", () => {
+  test("return error with an empty argument", () => {
+      expect(() => { findWinner(); }).toThrow("board is required");
+  });
+  test("return X as horizontal row 0 winner", () => {
+      const board3x2 =
+          [
+              ["X", "X", "X"],
+              ["0", null, "0"]
+          ];
+          expect(() => { findWinner(board3x2); }).toThrow("a 3 x 3 array is required");
+      });
+  test("return null on empty board", () => {
+      const board =
+          [
+              [null, null, null],
+              [null, null, null],
+              [null, null, null]
+          ];
+      expect(findWinner(board)).toBeNull();
+  });
+  test("return X as horizontal row 0 winner", () => {
+      const board =
+          [
+              ["X", "X", "X"],
+              [null, null, "0"],
+              ["0", null, "0"]
+          ];
+      expect(findWinner(board)).toBe('X');
+  });
+  test("return 0 as horizontal row 1 winner", () => {
+      const board =
+          [
+              ["X", null, "X"],
+              ["0", "0", "0"],
+              [null, null, null]
+          ];
+      expect(findWinner(board)).toBe('0');
+  });
+  test("return 0 as horizontal row 2 winner", () => {
+      const board =
+          [
+              ["X", null, "X"],
+              [null, null, null],
+              ["0", "0", "0"]
+          ];
+      expect(findWinner(board)).toBe('0');
+  });
+  test("return X as vertical column 0 winner", () => {
+      const board =
+          [
+              ["X", "0", null],
+              ["X", null, "0"],
+              ["X", null, "0"]
+          ];
+      expect(findWinner(board)).toBe('X');
+  });
+  test("return 0 as vertical column 1 winner", () => {
+      const board =
+          [
+              ["X", "0", null],
+              [null, "0", null],
+              ["X", "0", null]
+          ];
+      expect(findWinner(board)).toBe('0');
+  });
+  test("return 0 as back diagonal winner", () => {
+      const board =
+          [
+              ["0", "X", "X"],
+              [null, "0", "0"],
+              ["X", null, "0"]
+          ];
+      expect(findWinner(board)).toBe('0');
+  });
+  test("return X as forward diagonal winner", () => {
+      const board =
+          [
+              ["0", "X", "X"],
+              [null, "X", "0"],
+              ["X", null, "0"]
+          ];
+      expect(findWinner(board)).toBe('X');
+  });
+  test("return null for no winner", () => {
+      const board =
+          [
+              ["X", "0", "X"],
+              ["X", "0", "0"],
+              ["0", "X", "0"]
+          ];
+      expect(findWinner(board)).toBeNull();
+  });
+
 });
