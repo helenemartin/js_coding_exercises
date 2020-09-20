@@ -87,4 +87,22 @@ describe("isItPrime", () => {
     expect(isItPrime(613)).toBe(true);
     expect(isItPrime(797)).toBe(true);
   });
+  test("return false for 1", () => {
+    expect(isItPrime(1)).toBe(false);
+  });
+  test("return false for 0", () => {
+      expect(isItPrime(0)).toBe(false);
+  });
+  test("return false for non-prime num", () => {
+      expect(isItPrime(12)).toBe(false);
+      expect(isItPrime(100)).toBe(false);
+      expect(isItPrime(9999)).toBe(false);
+  });
+  test("return false for fractions", () => {
+      expect(isItPrime(0.5)).toBe(false);
+  });
+  test("return false for negative num", () => {
+      expect(isItPrime(-7)).toBe(false);
+      expect(isItPrime(-0)).toBe(false);  // negative zero!
+  });
 });
