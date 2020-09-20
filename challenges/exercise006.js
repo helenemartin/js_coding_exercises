@@ -22,9 +22,27 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
-  let re = new RegexExp('[ACGT*');
-  const replace = str.replace(re, '');
-  return replaced.length === 0;
+  if (typeof str !== 'string') throw new Error("a string is required");
+
+  function convertDNA(ch) {
+    if (ch === 'A') {
+      return 'T';
+    } else if (ch === 'T') {
+      return 'A';
+    } else if (ch === 'C') {
+      return 'G';
+    } else if (ch === 'G') {
+      return 'C';
+    } else {
+      throw new Error("valid DNA is required");
+    }
+  }
+
+  let res = '';
+  for (let c of str) {
+    res += convertDNA(c);
+  }
+  return res;
 };
 
 /**
@@ -43,6 +61,19 @@ const getComplementaryDNA = str => {
  */
 const isItPrime = n => {
   if (n === undefined) throw new Error("n is required");
+  if (n === undefined) throw new Error("n is required");
+  if (typeof n !== 'number') throw new Error("a number is required");
+
+  if (Math.sign(n) === -1 || Math.sign(n) === 0) return false;
+  if (n <= 1) return false;
+  if (n === 2) return true;
+
+  for (let i = 2; i < n; i++) {
+    if ((n % i === 0)) {
+      return false;
+    }
+  }
+  return true;
 };
 
 /**

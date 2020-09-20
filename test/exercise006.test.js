@@ -38,8 +38,24 @@ describe("sumMultiples", () => {
 });
 
 describe("isValidDNA", () => {
-  test ("return error with empty argument", () => {
-    expect (() => { isValidDNA();}).toThrow("str is required");
-
+  test("return error with an empty argument", () => {
+      expect(() => { isValidDNA(); }).toThrow("str is required");
+  });
+  test("return error with a non string argument", () => {
+      expect(() => { isValidDNA(42); }).toThrow("a string is required");
+      expect(() => { isValidDNA(['foo']); }).toThrow("a string is required");
+      expect(() => { isValidDNA(true); }).toThrow("a string is required");
+  });
+  test("return true for valid DNA", () => {
+      expect(isValidDNA('RAZZMATAZ')).toBe(true);
+  });
+  test("return false for all invalid DNA", () => {
+      expect(isValidDNA('RUDUDU')).toBe(false);
+  });
+  test("return false for including invalid DNA", () => {
+      expect(isValidDNA('Saucisson')).toBe(false);
+  });
+  test("return false for lowercase", () => {
+      expect(isValidDNA('Razzmataz')).toBe(false);
   });
 });
