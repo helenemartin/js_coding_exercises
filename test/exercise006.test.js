@@ -67,4 +67,24 @@ describe("isItPrime", () => {
           isItPrime();
       }).toThrow("n is required");
   });
+  test("return error with a non number argument", () => {
+    expect(() => {
+        isItPrime('foo');
+    }).toThrow("a number is required");
+    expect(() => {
+        isItPrime(['foo']);
+    }).toThrow("a number is required");
+    expect(() => {
+        isItPrime(true);
+    }).toThrow("a number is required");
+  });
+  test("return true for prime number", () => {
+    expect(isItPrime(2)).toBe(true);
+    expect(isItPrime(7)).toBe(true);
+    expect(isItPrime(13)).toBe(true);
+    expect(isItPrime(43)).toBe(true);
+    expect(isItPrime(97)).toBe(true);
+    expect(isItPrime(613)).toBe(true);
+    expect(isItPrime(797)).toBe(true);
+  });
 });
