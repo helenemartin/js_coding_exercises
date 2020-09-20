@@ -94,9 +94,7 @@ const createMatrix = (n, fill) => {
   if (fill === undefined) throw new Error("fill is required");
 
   const arr = [];
-  // outer loop
   for (let i = 0; i < n; i++) {
-    // build a row
     const row = [];
     for (let j = 0; j < n; j++) {
       row.push(fill);
