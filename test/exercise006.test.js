@@ -42,20 +42,29 @@ describe("isValidDNA", () => {
       expect(() => { isValidDNA(); }).toThrow("str is required");
   });
   test("return error with a non string argument", () => {
-      expect(() => { isValidDNA(42); }).toThrow("a string is required");
+      expect(() => { isValidDNA(13); }).toThrow("a string is required");
       expect(() => { isValidDNA(['foo']); }).toThrow("a string is required");
       expect(() => { isValidDNA(true); }).toThrow("a string is required");
   });
   test("return true for valid DNA", () => {
-      expect(isValidDNA('RAZZMATAZ')).toBe(true);
+      expect(isValidDNA('GATTACA')).toBe(true);
   });
   test("return false for all invalid DNA", () => {
-      expect(isValidDNA('RUDUDU')).toBe(false);
+      expect(isValidDNA('BONOBO')).toBe(false);
   });
   test("return false for including invalid DNA", () => {
-      expect(isValidDNA('Saucisson')).toBe(false);
+      expect(isValidDNA('ABACUS')).toBe(false);
   });
   test("return false for lowercase", () => {
-      expect(isValidDNA('Razzmataz')).toBe(false);
+      expect(isValidDNA('Gattaca')).toBe(false);
+  });
+});
+
+
+describe("isItPrime", () => {
+  test("return error with an empty argument", () => {
+      expect(() => {
+          isItPrime();
+      }).toThrow("n is required");
   });
 });
