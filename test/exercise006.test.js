@@ -21,6 +21,10 @@ describe("sumMultiples", () => {
     expect(result).toBe(expected);
 
   });
+  test ("return 0 when no numbers are multiples of 3 and 5", () => {
+    expect(sumMultiples([1, 2, 4])).toBe(0);
+
+  });
 
 
 });
