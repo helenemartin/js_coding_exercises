@@ -106,3 +106,16 @@ describe("isItPrime", () => {
       expect(isItPrime(-0)).toBe(false);  // negative zero!
   });
 });
+
+describe("areWeCovered", () => {
+  test("return error with an empty arguments", () => {
+      const staff = [
+          { name: "Ruby", rota: ["Tuesday"] },
+          { name: "Bob", rota: ["Tuesday"] },
+          { name: "Michael", rota: ["Tuesday"] }
+      ];
+      expect(() => { areWeCovered(); }).toThrow("staff is required");
+      expect(() => { areWeCovered('foo'); }).toThrow("an array of staff is required");
+      expect(() => { areWeCovered(staff, 3); }).toThrow("day is required");
+  });
+});
