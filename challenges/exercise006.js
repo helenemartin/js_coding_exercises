@@ -52,6 +52,25 @@ const isValidDNA = str => {
  */
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  function convertDNA(ch) {
+    if (ch === 'A') {
+      return 'T';
+    } else if (ch === 'T') {
+      return 'A';
+    } else if (ch === 'C') {
+      return 'G';
+    } else if (ch === 'G') {
+      return 'C';
+    } else {
+      throw new Error("valid DNA is required");
+    }
+  }
+
+  let res = '';
+  for (let c of str) {
+    res += convertDNA(c);
+  }
+  return res;
 };
 
 /**
