@@ -1,123 +1,83 @@
 const {
-    sumMultiples,
-    isValidDNA,
-    getComplementaryDNA,
-    isItPrime,
-    createMatrix,
-    areWeCovered
-  } = require("../challenges/exercise006");
+  sumMultiples,
+  isValidDNA,
+  getComplementaryDNA,
+  isItPrime,
+  createMatrix,
+  areWeCovered
+} = require("../challenges/exercise006");
 
 describe("sumMultiples", () => {
-  test ("return the sum of any number that are multiples of 3 or 5", () => {
-    const result = sumMultiples([1,3,5]);
+  test("return the sum of any number that are multiples of 3 or 5", () => {
+    const result = sumMultiples([1, 3, 5]);
     const expected = 8;
-    expect (result).toBe(expected);
-
+    expect(result).toBe(expected);
   });
 
-  test ("return the sum of any decimal numbers that are multiples of 3 and 5", () => {
+  test("return the sum of any decimal numbers that are multiples of 3 and 5", () => {
     const result = sumMultiples([1, 3, 5, 15.0, 2.567, 3.33]);
     const expected = 23;
     expect(result).toBe(expected);
-
   });
-  test ("return 0 when no numbers are multiples of 3 and 5", () => {
+  test("return 0 when no numbers are multiples of 3 and 5", () => {
     expect(sumMultiples([1, 2, 4])).toBe(0);
-
   });
-  test ("return error with an empty array", () => {
+  test("return error with an empty array", () => {
     expect(sumMultiples([1, 2, 4])).toBe(0);
-
   });
-  test ("return 0 when no numbers are multiples of 3 and 5", () => {
+  test("return 0 when no numbers are multiples of 3 and 5", () => {
     expect(() => {
       sumMultiples();
     }).toThrow("arr is required");
-
   });
 });
 
-describe("isValidDNA", () => {
-  test("return error with an empty argument", () => {
-      expect(() => { isValidDNA(); }).toThrow("str is required");
+describe(isValidDNA, () => {
+  test("if string type parameter not passed return false", () => {
+    expect(isValidDNA(2525)).toBe(false);
+    expect(isValidDNA(["sas", "sasa"])).toBe(false);
   });
-  test("return error with a non string argument", () => {
-      expect(() => { isValidDNA(13); }).toThrow("a string is required");
-      expect(() => { isValidDNA(['foo']); }).toThrow("a string is required");
-      expect(() => { isValidDNA(true); }).toThrow("a string is required");
+
+  test("if matching DNA string only return true", () => {
+    expect(isValidDNA("CGGATTTTTCCCTTT")).toBe(true);
+    expect(isValidDNA("TGACTAACTTT")).toBe(true);
+    expect(isValidDNA("TGTT")).toBe(true);
   });
-  test("return true for valid DNA", () => {
-      expect(isValidDNA('GATTACA')).toBe(true);
-  });
-  test("return false for all invalid DNA", () => {
-      expect(isValidDNA('BONOBO')).toBe(false);
-  });
-  test("return false for including invalid DNA", () => {
-      expect(isValidDNA('ABACUS')).toBe(false);
-  });
-  test("return false for lowercase", () => {
-      expect(isValidDNA('Gattaca')).toBe(false);
+  test("if anything other than matching DNA string return false", () => {
+    expect(isValidDNA("CGGATT  hyEMRRRTTTC CCTTT")).toBe(false);
+    expect(isValidDNA("TGA C;;;;444TAACTTT")).toBe(false);
+    expect(isValidDNA("TGT31387dddT")).toBe(false);
   });
 });
 
-describe("getComplementaryDNA", () => {
-  test("return error with an empty argument", () => {
-      expect(() => {
-          getComplementaryDNA();
-      }).toThrow("str is required");
+describe(getComplementaryDNA, () => {
+  test("return not valid DNA string error if not valid DNA string", () => {
+    expect(() => {
+      getComplementaryDNA("CGGATT  hyEMRRRTTTC CCTTT");
+    }).toThrow("Not a valid DNA string");
   });
-  test("return error with a non string argument", () => {
-      expect(() => {
-          getComplementaryDNA(42);
-      }).toThrow("a string is required");
-      expect(() => {
-          getComplementaryDNA(['foo']);
-      }).toThrow("a string is required");
-      expect(() => {
-          getComplementaryDNA(true);
-      }).toThrow("a string is required");
-  });
-  test("return complementary DNA pairs - A <-> T", () => {
-      expect(getComplementaryDNA('A')).toBe('T');
-      expect(getComplementaryDNA('T')).toBe('A');
-      expect(getComplementaryDNA('AT')).toBe('TA');
-      expect(getComplementaryDNA('TATTA')).toBe('ATAAT');
-  });
-  test("return complementary DNA pairs - C <-> G", () => {
-      expect(getComplementaryDNA('C')).toBe('G');
-      expect(getComplementaryDNA('G')).toBe('C');
-      expect(getComplementaryDNA('GCGCGC')).toBe('CGCGCG');
-  });
-  test("return valid complementary DNA", () => {
-      expect(getComplementaryDNA('GATTACA')).toBe('CTAATGT');
-  });
-  test("return error with invalid DNA", () => {
-      expect(() => {
-          getComplementaryDNA('GATSBY');
-      }).toThrow("valid DNA is required");
-  });
-  test("return error with invalid DNA - lowecase", () => {
-      expect(() => {
-          getComplementaryDNA('Gattaca');
-      }).toThrow("valid DNA is required");
+  test("if valid DNA string return complementary string", () => {
+    expect(getComplementaryDNA("ACTG")).toBe("TGAC");
+    expect(getComplementaryDNA("TGAC")).toBe("ACTG");
+    expect(getComplementaryDNA("TGACTGACACTG")).toBe("ACTGACTGTGAC");
   });
 });
 
 describe("isItPrime", () => {
   test("return error with an empty argument", () => {
-      expect(() => {
-          isItPrime();
-      }).toThrow("n is required");
+    expect(() => {
+      isItPrime();
+    }).toThrow("n is required");
   });
   test("return error with a non number argument", () => {
     expect(() => {
-        isItPrime('foo');
+      isItPrime("foo");
     }).toThrow("a number is required");
     expect(() => {
-        isItPrime(['foo']);
+      isItPrime(["foo"]);
     }).toThrow("a number is required");
     expect(() => {
-        isItPrime(true);
+      isItPrime(true);
     }).toThrow("a number is required");
   });
   test("return true for prime number", () => {
@@ -133,68 +93,74 @@ describe("isItPrime", () => {
     expect(isItPrime(1)).toBe(false);
   });
   test("return false for 0", () => {
-      expect(isItPrime(0)).toBe(false);
+    expect(isItPrime(0)).toBe(false);
   });
   test("return false for non-prime num", () => {
-      expect(isItPrime(12)).toBe(false);
-      expect(isItPrime(100)).toBe(false);
-      expect(isItPrime(9999)).toBe(false);
+    expect(isItPrime(12)).toBe(false);
+    expect(isItPrime(100)).toBe(false);
+    expect(isItPrime(9999)).toBe(false);
   });
   test("return false for fractions", () => {
-      expect(isItPrime(0.5)).toBe(false);
+    expect(isItPrime(0.5)).toBe(false);
   });
   test("return false for negative num", () => {
-      expect(isItPrime(-7)).toBe(false);
-      expect(isItPrime(-0)).toBe(false); 
+    expect(isItPrime(-7)).toBe(false);
+    expect(isItPrime(-0)).toBe(false);
   });
 });
 
 describe("areWeCovered", () => {
   test("return error with an empty argument", () => {
-      const staff = [
-          { name: "Ruby", rota: ["Tuesday"] },
-          { name: "Bob", rota: ["Tuesday"] },
-          { name: "Michael", rota: ["Tuesday"] }
-      ];
-      expect(() => { areWeCovered(); }).toThrow("staff is required");
-      expect(() => { areWeCovered('foo'); }).toThrow("an array of staff is required");
-      expect(() => { areWeCovered(staff, 3); }).toThrow("day is required");
+    const staff = [
+      { name: "Ruby", rota: ["Tuesday"] },
+      { name: "Bob", rota: ["Tuesday"] },
+      { name: "Michael", rota: ["Tuesday"] }
+    ];
+    expect(() => {
+      areWeCovered();
+    }).toThrow("staff is required");
+    expect(() => {
+      areWeCovered("foo");
+    }).toThrow("an array of staff is required");
+    expect(() => {
+      areWeCovered(staff, 3);
+    }).toThrow("day is required");
   });
   test("return true for minimum staff cover on Tuesday", () => {
     const staff = [
-        { name: "Ruby", rota: ["Tuesday"] },
-        { name: "Bob", rota: ["Tuesday"] },
-        { name: "Michael", rota: ["Tuesday"] }
+      { name: "Ruby", rota: ["Tuesday"] },
+      { name: "Bob", rota: ["Tuesday"] },
+      { name: "Michael", rota: ["Tuesday"] }
     ];
-    expect(areWeCovered(staff, 'Tuesday')).toBe(true);
+    expect(areWeCovered(staff, "Tuesday")).toBe(true);
   });
   test("return true for more than minimum staff cover on Thursday", () => {
     const staff = [
-        { name: "Sally", rota: ["Monday", "Tuesday", "Thursday", "Friday"] },
-        { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
-        { name: "Ava", rota: ["Monday", "Wednesday", "Thursday", "Friday"] },
-        { name: "Eve", rota: ["Sunday", "Tuesday", "Thursday", "Friday"] },
-        { name: "Wally", rota: ["Saturday", "Monday", "Thursday", "Friday"] }
+      { name: "Sally", rota: ["Monday", "Tuesday", "Thursday", "Friday"] },
+      { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
+      { name: "Ava", rota: ["Monday", "Wednesday", "Thursday", "Friday"] },
+      { name: "Eve", rota: ["Sunday", "Tuesday", "Thursday", "Friday"] },
+      { name: "Wally", rota: ["Saturday", "Monday", "Thursday", "Friday"] }
     ];
-    expect(areWeCovered(staff, 'Thursday')).toBe(true);
+    expect(areWeCovered(staff, "Thursday")).toBe(true);
   });
   test("return false for empty staff array on Wednesday", () => {
-      expect(areWeCovered([], 'Wednesday')).toBe(false);
+    expect(areWeCovered([], "Wednesday")).toBe(false);
   });
   test("return false for minimum cover on Wednesday", () => {
     const staff = [
-        { name: "Ruby", rota: ["Wednesday"] },
-        { name: "Bob", rota: ["Tuesday"] },
-        { name: "Michael", rota: ["Tuesday"] }
+      { name: "Ruby", rota: ["Wednesday"] },
+      { name: "Bob", rota: ["Tuesday"] },
+      { name: "Michael", rota: ["Tuesday"] }
     ];
-    expect(areWeCovered(staff, 'Wednesday')).toBe(false);
+    expect(areWeCovered(staff, "Wednesday")).toBe(false);
   });
   test("return false for no cover on Wednesday", () => {
-      const staff = [
-          { name: "Ruby", rota: ["Tuesday"] },
-          { name: "Bob", rota: ["Tuesday"] },
-          { name: "Michael", rota: ["Tuesday"] }
-      ];
-      expect(areWeCovered(staff, 'Wednesday')).toBe(false);
+    const staff = [
+      { name: "Ruby", rota: ["Tuesday"] },
+      { name: "Bob", rota: ["Tuesday"] },
+      { name: "Michael", rota: ["Tuesday"] }
+    ];
+    expect(areWeCovered(staff, "Wednesday")).toBe(false);
   });
 });

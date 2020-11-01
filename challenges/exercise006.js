@@ -7,7 +7,7 @@
 const sumMultiples = arr => {
   if (arr === undefined) throw new Error("arr is required");
   let total = 0;
-  arr.forEach ((n) =>{
+  arr.forEach(n => {
     if (n % 3 === 0 || n % 5 === 0) {
       total += n;
     }
@@ -22,28 +22,16 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
-  if (typeof str !== 'string') throw new Error("a string is required");
-
-  function convertDNA(ch) {
-    if (ch === 'A') {
-      return 'T';
-    } else if (ch === 'T') {
-      return 'A';
-    } else if (ch === 'C') {
-      return 'G';
-    } else if (ch === 'G') {
-      return 'C';
-    } else {
-      throw new Error("valid DNA is required");
-    }
-  }
-
-  let res = '';
-  for (let c of str) {
-    res += convertDNA(c);
-  }
-  return res;
+  if (typeof str !== "string") return false;
+  const isValid = !/[^GCTA]/.test(str);
+  return isValid;
 };
+
+/**
+ * This function will receive a valid DNA string (see above) and should return a string of the complementary base pairs. In DNA, T always pairs with A, and C always pairs with G. So a string of "ACTG" would have a complementary DNA string of "TGAC".
+ * @param {String} str
+ * @returns {String}
+ */
 
 /**
  * This function will receive a valid DNA string (see above) and should return a string of the complementary base pairs. In DNA, T always pairs with A, and C always pairs with G. So a string of "ACTG" would have a complementary DNA string of "TGAC".
@@ -52,25 +40,13 @@ const isValidDNA = str => {
  */
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
-  function convertDNA(ch) {
-    if (ch === 'A') {
-      return 'T';
-    } else if (ch === 'T') {
-      return 'A';
-    } else if (ch === 'C') {
-      return 'G';
-    } else if (ch === 'G') {
-      return 'C';
-    } else {
-      throw new Error("valid DNA is required");
-    }
-  }
-
-  let res = '';
-  for (let c of str) {
-    res += convertDNA(c);
-  }
-  return res;
+  if (!isValidDNA(str)) throw new Error("Not a valid DNA string");
+  const compString = { A: "T", T: "A", G: "C", C: "G" };
+  const dnaPattern = /[ATCG]/g;
+  let sequence = str.replace(dnaPattern, function(dna) {
+    return compString[dna];
+  });
+  return sequence;
 };
 
 /**
@@ -81,14 +57,14 @@ const getComplementaryDNA = str => {
 const isItPrime = n => {
   if (n === undefined) throw new Error("n is required");
   if (n === undefined) throw new Error("n is required");
-  if (typeof n !== 'number') throw new Error("a number is required");
+  if (typeof n !== "number") throw new Error("a number is required");
 
   if (Math.sign(n) === -1 || Math.sign(n) === 0) return false;
   if (n <= 1) return false;
   if (n === 2) return true;
 
   for (let i = 2; i < n; i++) {
-    if ((n % i === 0)) {
+    if (n % i === 0) {
       return false;
     }
   }
@@ -108,8 +84,9 @@ const isItPrime = n => {
  */
 const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
-  if (typeof n !== 'number') throw new Error("a number is required");
-  if (Math.sign(n) === -1 || Math.sign(n) === 0 || n % 1 !== 0) throw new Error("n must be a positive integer");
+  if (typeof n !== "number") throw new Error("a number is required");
+  if (Math.sign(n) === -1 || Math.sign(n) === 0 || n % 1 !== 0)
+    throw new Error("n must be a positive integer");
   if (fill === undefined) throw new Error("fill is required");
 
   const arr = [];
@@ -139,9 +116,9 @@ const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (!Array.isArray(staff)) throw new Error("an array of staff is required");
   if (day === undefined) throw new Error("day is required");
-  if (typeof day !== 'string') throw new Error("day is required");
+  if (typeof day !== "string") throw new Error("day is required");
   let count = 0;
-  staff.forEach(function (staffMember) {
+  staff.forEach(function(staffMember) {
     // each row is a staff object
     if (staffMember.rota.find(d => d === day) !== undefined) {
       count++;
@@ -151,27 +128,37 @@ const areWeCovered = (staff, day) => {
 };
 describe("createMatrix", () => {
   test("return error with empty arguments", () => {
-      expect(() => { createMatrix(); }).toThrow("n is required");
-      expect(() => { createMatrix(3); }).toThrow("fill is required");
-      expect(() => { createMatrix('foo'); }).toThrow("a number is required");
+    expect(() => {
+      createMatrix();
+    }).toThrow("n is required");
+    expect(() => {
+      createMatrix(3);
+    }).toThrow("fill is required");
+    expect(() => {
+      createMatrix("foo");
+    }).toThrow("a number is required");
   });
   test("return error if n is not a positive integer", () => {
-      expect(() => { createMatrix(0); }).toThrow("n must be a positive integer");
-      expect(() => { createMatrix(-2); }).toThrow("n must be a positive integer");
-      expect(() => { createMatrix(3.5); }).toThrow("n must be a positive integer");
+    expect(() => {
+      createMatrix(0);
+    }).toThrow("n must be a positive integer");
+    expect(() => {
+      createMatrix(-2);
+    }).toThrow("n must be a positive integer");
+    expect(() => {
+      createMatrix(3.5);
+    }).toThrow("n must be a positive integer");
   });
   test("return array with one element", () => {
-    const array1x1 = [
-        ['foo']
-    ];
-    expect(createMatrix(1, 'foo')).toEqual(array1x1);
+    const array1x1 = [["foo"]];
+    expect(createMatrix(1, "foo")).toEqual(array1x1);
   });
   test("return array with multiple elements", () => {
-      const array2x2 = [
-          ['foo', 'foo'],
-          ['foo', 'foo']
-      ];
-      expect(createMatrix(2, 'foo')).toEqual(array2x2);
+    const array2x2 = [
+      ["foo", "foo"],
+      ["foo", "foo"]
+    ];
+    expect(createMatrix(2, "foo")).toEqual(array2x2);
   });
 });
 
