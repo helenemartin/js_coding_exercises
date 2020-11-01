@@ -217,4 +217,24 @@ describe(findWinner, () => {
       ])
     ).toBe("X");
   });
+  test("it returns 0 if 0 player has the row complete", () => {
+    const obj1 = [
+      [null, null, "0"],
+      ["X", "0", "0"],
+      ["0", "0", "0"]
+    ];
+    const obj2 = [
+      [null, null, "0"],
+      ["0", "0", "0"],
+      ["X", "0", "0"]
+    ];
+    const obj3 = [
+      ["0", "0", "0"],
+      ["X", "0", "0"],
+      ["X", "0", "0"]
+    ];
+    expect(findWinner(obj1)).toBe("0");
+    expect(findWinner(obj2)).toBe("0");
+    expect(findWinner(obj3)).toBe("0");
+  });
 });
