@@ -4,7 +4,12 @@
  */
 const sumDigits = n => {
   if (n === undefined) throw new Error("n is required");
-  const numArray = n.toString().split('').map((i) => { return Number(i); });
+  const numArray = n
+    .toString()
+    .split("")
+    .map(i => {
+      return Number(i);
+    });
   return numArray.reduce((total, e) => total + e, 0);
 };
 
@@ -66,18 +71,19 @@ const getScreentimeAlertList = (users, date) => {
  * @param {String} str
  */
 const hexToRGB = hexStr => {
-  const hexToRGB = hexStr => {
-    if (hexStr === undefined) throw new Error("hexStr is required");
-    if (typeof hexStr !== 'string') throw new Error("a hex color code is required");
-    const regexp = new RegExp('^#[0-9A-Fa-f]{6}$');
-    if (regexp.test(hexStr) === false) {
-      throw new Error("a valid hex color code is required");
-    }
-    const red = parseInt(hexStr.substr(1, 2), 16);
-    const green = parseInt(hexStr.substr(3, 2), 16);
-    const blue = parseInt(hexStr.substr(5, 2), 16);
-    return 'rgb(' + red + ',' + green + ',' + blue + ')';
-  };
+  if (hexStr === undefined) throw new Error("hexStr is required");
+  const hexPattern = /^#[0-9|A-G|a-g]{6}$/;
+  let isValidhex = hexPattern.test(hexStr);
+  if (!isValidhex) throw new Error("Not a valid hexadecimal string");
+  const rgbStr =
+    "rgb(" +
+    parseInt("0x" + hexStr.slice(1, 3)) +
+    "," +
+    parseInt("0x" + hexStr.slice(3, 5)) +
+    "," +
+    parseInt("0x" + hexStr.slice(5, 7)) +
+    ")";
+  return rgbStr;
 };
 
 /**
@@ -95,23 +101,24 @@ const findWinner = board => {
   const findWinner = board => {
     if (board === undefined) throw new Error("board is required");
     if (!Array.isArray(board)) throw new Error("an array is required");
-    if (board.length !== 3 || board[0].length !== 3) throw new Error("a 3 x 3 array is required");
+    if (board.length !== 3 || board[0].length !== 3)
+      throw new Error("a 3 x 3 array is required");
 
     for (let i = 0; i < 3; i++) {
       let crosses = 0;
       let noughts = 0;
       for (let j = 0; j < 3; j++) {
         const cell = board[i][j];
-        if (cell === 'X') {
+        if (cell === "X") {
           crosses++;
-        } else if (cell === '0') {
+        } else if (cell === "0") {
           noughts++;
         }
       }
       if (crosses === 3) {
-        return 'X';
+        return "X";
       } else if (noughts === 3) {
-        return '0';
+        return "0";
       }
     }
     for (let i = 0; i < 3; i++) {
@@ -119,23 +126,23 @@ const findWinner = board => {
       let noughts = 0;
       for (let j = 0; j < 3; j++) {
         const cell = board[j][i];
-        if (cell === 'X') {
+        if (cell === "X") {
           crosses++;
-        } else if (cell === '0') {
+        } else if (cell === "0") {
           noughts++;
         }
       }
       if (crosses === 3) {
-        return 'X';
+        return "X";
       } else if (noughts === 3) {
-        return '0';
+        return "0";
       }
     }
 
     const backDiagonal = board[0][0] + board[1][1] + board[2][2];
     const fwdDiagonal = board[0][2] + board[1][1] + board[2][0];
-    if (backDiagonal === 'XXX' || fwdDiagonal === 'XXX') return 'X';
-    if (backDiagonal === '000' || fwdDiagonal === '000') return '0';
+    if (backDiagonal === "XXX" || fwdDiagonal === "XXX") return "X";
+    if (backDiagonal === "000" || fwdDiagonal === "000") return "0";
     return null;
   };
 };
