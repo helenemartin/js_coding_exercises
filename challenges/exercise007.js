@@ -67,6 +67,23 @@ const createRange = (start, end, step) => {
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+  let screentimeAlert = [];
+  let sumscreentime = 0;
+
+  users.forEach(i => {
+    i.screenTime.forEach(d => {
+      sumscreentime = 0;
+      if (d.date === date) {
+        for (let app in d.usage) {
+          sumscreentime += d.usage[app];
+        }
+      }
+      if (sumscreentime > 100) {
+        screentimeAlert.push(i.username);
+      }
+    });
+  });
+  return screentimeAlert;
 };
 
 /**
@@ -124,57 +141,6 @@ const findWinner = board => {
 
   // Checking Columns
   if (winner === "no winner") {
-    let j = 0;
-    let i = 0;
-    do {
-      let sum = 1;
-
-      for (i = 0; i < board.length - 1; i++) {
-        if (board[i][j] === board[i + 1][j]) {
-          sum += 1;
-        }
-        if (sum === board[i].length) {
-          winner = board[0][j];
-        }
-      }
-      j++;
-    } while (j < board[i].length);
-  }
-
-  // Left to Right Diagonal Move
-  if (winner === "no winner") {
-    let sum = 1;
-    let i = 0;
-    let j = 0;
-
-    do {
-      if (board[i][j] === board[i + 1][j + 1]) {
-        sum += 1;
-      }
-      if (sum === board[i].length) {
-        winner = board[i][j];
-      }
-      i++;
-      j++;
-    } while (i < board[i].length - 1 && j < board[i].length - 1);
-  }
-
-  // Right to Left Diagonal Move
-  if (winner === "no winner") {
-    let sum = 1;
-    let i = 0;
-    let j = board[i].length - 1;
-
-    do {
-      if (board[i][j] === board[i + 1][j - 1]) {
-        sum += 1;
-      }
-      if (sum === board[i].length) {
-        winner = board[i][j];
-      }
-      i++;
-      j--;
-    } while (i < board[i].length - 1 && j < board[i].length - 1);
   }
 
   return winner;
