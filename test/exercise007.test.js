@@ -186,91 +186,35 @@ describe(hexToRGB, () => {
   });
 });
 
-describe("findWinner", () => {
-  test("return error with an empty argument", () => {
-    expect(() => {
-      findWinner();
-    }).toThrow("board is required");
-  });
-  test("return X as horizontal row 0 winner", () => {
-    const board3x2 = [
-      ["X", "X", "X"],
-      ["0", null, "0"]
-    ];
-    expect(() => {
-      findWinner(board3x2);
-    }).toThrow("a 3 x 3 array is required");
-  });
-  test("return null on empty board", () => {
-    const board = [
-      [null, null, null],
-      [null, null, null],
-      [null, null, null]
-    ];
-    expect(findWinner(board)).toBeNull();
-  });
-  test("return X as horizontal row 0 winner", () => {
-    const board = [
-      ["X", "X", "X"],
-      [null, null, "0"],
-      ["0", null, "0"]
-    ];
-    expect(findWinner(board)).toBe("X");
-  });
-  test("return 0 as horizontal row 1 winner", () => {
-    const board = [
-      ["X", null, "X"],
-      ["0", "0", "0"],
-      [null, null, null]
-    ];
-    expect(findWinner(board)).toBe("0");
-  });
-  test("return 0 as horizontal row 2 winner", () => {
-    const board = [
-      ["X", null, "X"],
-      [null, null, null],
-      ["0", "0", "0"]
-    ];
-    expect(findWinner(board)).toBe("0");
-  });
-  test("return X as vertical column 0 winner", () => {
-    const board = [
-      ["X", "0", null],
-      ["X", null, "0"],
-      ["X", null, "0"]
-    ];
-    expect(findWinner(board)).toBe("X");
-  });
-  test("return 0 as vertical column 1 winner", () => {
-    const board = [
-      ["X", "0", null],
-      [null, "0", null],
-      ["X", "0", null]
-    ];
-    expect(findWinner(board)).toBe("0");
-  });
-  test("return 0 as back diagonal winner", () => {
-    const board = [
-      ["0", "X", "X"],
-      [null, "0", "0"],
-      ["X", null, "0"]
-    ];
-    expect(findWinner(board)).toBe("0");
-  });
-  test("return X as forward diagonal winner", () => {
-    const board = [
-      ["0", "X", "X"],
-      [null, "X", "0"],
-      ["X", null, "0"]
-    ];
-    expect(findWinner(board)).toBe("X");
-  });
-  test("return null for no winner", () => {
-    const board = [
-      ["X", "0", "X"],
-      ["X", "0", "0"],
-      ["0", "X", "0"]
-    ];
-    expect(findWinner(board)).toBeNull();
+describe(findWinner, () => {
+  test("Returns correct winner for given array board on any line horizontal", () => {
+    expect(
+      findWinner([
+        ["X", "X", "X"],
+        ["0", null, "0"],
+        ["0", null, "0"]
+      ])
+    ).toBe("X");
+    expect(
+      findWinner([
+        ["X", null, "0"],
+        ["0", "0", "0"],
+        ["X", null, "X"]
+      ])
+    ).toBe("0");
+    expect(
+      findWinner([
+        ["X", null, "0"],
+        ["0", null, "0"],
+        ["X", "X", "X"]
+      ])
+    ).toBe("X");
+    expect(
+      findWinner([
+        [null, null, null],
+        ["0", null, "0"],
+        ["X", "X", "X"]
+      ])
+    ).toBe("X");
   });
 });
