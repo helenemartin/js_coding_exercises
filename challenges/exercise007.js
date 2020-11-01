@@ -107,53 +107,77 @@ const hexToRGB = hexStr => {
  */
 const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
-  const findWinner = board => {
-    if (board === undefined) throw new Error("board is required");
-    if (!Array.isArray(board)) throw new Error("an array is required");
-    if (board.length !== 3 || board[0].length !== 3)
-      throw new Error("a 3 x 3 array is required");
+  let winner = "no winner";
 
-    for (let i = 0; i < 3; i++) {
-      let crosses = 0;
-      let noughts = 0;
-      for (let j = 0; j < 3; j++) {
-        const cell = board[i][j];
-        if (cell === "X") {
-          crosses++;
-        } else if (cell === "0") {
-          noughts++;
-        }
-      }
-      if (crosses === 3) {
-        return "X";
-      } else if (noughts === 3) {
-        return "0";
+  // Checking Rows
+  for (let i = 0; i < board.length; i++) {
+    let sum = 1;
+    for (let j = 1; j < board[i].length; j++) {
+      if (board[i][j] === board[i][j - 1]) {
+        sum += 1;
       }
     }
-    for (let i = 0; i < 3; i++) {
-      let crosses = 0;
-      let noughts = 0;
-      for (let j = 0; j < 3; j++) {
-        const cell = board[j][i];
-        if (cell === "X") {
-          crosses++;
-        } else if (cell === "0") {
-          noughts++;
+    if (sum === board[i].length) {
+      winner = board[i][0];
+    }
+  }
+
+  // Checking Columns
+  if (winner === "no winner") {
+    let j = 0;
+    let i = 0;
+    do {
+      let sum = 1;
+
+      for (i = 0; i < board.length - 1; i++) {
+        if (board[i][j] === board[i + 1][j]) {
+          sum += 1;
+        }
+        if (sum === board[i].length) {
+          winner = board[0][j];
         }
       }
-      if (crosses === 3) {
-        return "X";
-      } else if (noughts === 3) {
-        return "0";
-      }
-    }
+      j++;
+    } while (j < board[i].length);
+  }
 
-    const backDiagonal = board[0][0] + board[1][1] + board[2][2];
-    const fwdDiagonal = board[0][2] + board[1][1] + board[2][0];
-    if (backDiagonal === "XXX" || fwdDiagonal === "XXX") return "X";
-    if (backDiagonal === "000" || fwdDiagonal === "000") return "0";
-    return null;
-  };
+  // Left to Right Diagonal Move
+  if (winner === "no winner") {
+    let sum = 1;
+    let i = 0;
+    let j = 0;
+
+    do {
+      if (board[i][j] === board[i + 1][j + 1]) {
+        sum += 1;
+      }
+      if (sum === board[i].length) {
+        winner = board[i][j];
+      }
+      i++;
+      j++;
+    } while (i < board[i].length - 1 && j < board[i].length - 1);
+  }
+
+  // Right to Left Diagonal Move
+  if (winner === "no winner") {
+    let sum = 1;
+    let i = 0;
+    let j = board[i].length - 1;
+
+    do {
+      if (board[i][j] === board[i + 1][j - 1]) {
+        sum += 1;
+      }
+      if (sum === board[i].length) {
+        winner = board[i][j];
+      }
+      i++;
+      j--;
+    } while (i < board[i].length - 1 && j < board[i].length - 1);
+  }
+
+  return winner;
 };
 
 module.exports = {
