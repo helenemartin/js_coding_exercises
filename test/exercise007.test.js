@@ -186,37 +186,29 @@ describe(hexToRGB, () => {
   });
 });
 
-describe(findWinner, () => {
-  test("Returns correct winner for given array board on any line horizontal", () => {
-    expect(
-      findWinner([
-        ["X", "X", "X"],
-        ["0", null, "0"],
-        ["0", null, "0"]
-      ])
-    ).toBe("X");
-    expect(
-      findWinner([
-        ["X", null, "0"],
-        ["0", "0", "0"],
-        ["X", null, "X"]
-      ])
-    ).toBe("0");
-    expect(
-      findWinner([
-        ["X", null, "0"],
-        ["0", null, "0"],
-        ["X", "X", "X"]
-      ])
-    ).toBe("X");
-    expect(
-      findWinner([
-        [null, null, null],
-        ["0", null, "0"],
-        ["X", "X", "X"]
-      ])
-    ).toBe("X");
+describe("findWinner", () => {
+  test("it returns X if X player has the row complete", () => {
+    const obj1 = [
+      [null, null, "0"],
+      ["X", "0", "0"],
+      ["X", "X", "X"]
+    ];
+    const obj2 = [
+      [null, null, "0"],
+      ["X", "X", "X"],
+      ["X", "0", "0"]
+    ];
+    const obj3 = [
+      ["X", "X", "X"],
+      ["X", "0", "0"],
+      ["X", "0", "0"]
+    ];
+
+    expect(findWinner(obj1)).toBe("X");
+    expect(findWinner(obj2)).toBe("X");
+    expect(findWinner(obj3)).toBe("X");
   });
+
   test("it returns 0 if 0 player has the row complete", () => {
     const obj1 = [
       [null, null, "0"],
@@ -233,8 +225,68 @@ describe(findWinner, () => {
       ["X", "0", "0"],
       ["X", "0", "0"]
     ];
+
     expect(findWinner(obj1)).toBe("0");
     expect(findWinner(obj2)).toBe("0");
     expect(findWinner(obj3)).toBe("0");
+  });
+
+  test("it returns X if X player has the column complete", () => {
+    const obj1 = [
+      ["X", "0", "0"],
+      ["X", null, "0"],
+      ["X", "0", "X"]
+    ];
+    const obj2 = [
+      [null, "X", "0"],
+      ["X", "X", "null"],
+      ["X", "X", "0"]
+    ];
+    const obj3 = [
+      ["X", "X", "X"],
+      ["X", "0", "X"],
+      [null, "0", "X"]
+    ];
+
+    expect(findWinner(obj1)).toBe("X");
+    expect(findWinner(obj2)).toBe("X");
+    expect(findWinner(obj3)).toBe("X");
+  });
+
+  test("it returns 0 if 0 player has the column complete", () => {
+    const obj1 = [
+      ["0", "0", "0"],
+      ["0", null, "0"],
+      ["0", "0", "X"]
+    ];
+    const obj2 = [
+      [null, "0", "0"],
+      ["X", "0", "null"],
+      ["X", "0", "0"]
+    ];
+    const obj3 = [
+      ["X", "X", "0"],
+      ["X", "0", "0"],
+      [null, "0", "0"]
+    ];
+
+    expect(findWinner(obj1)).toBe("0");
+    expect(findWinner(obj2)).toBe("0");
+    expect(findWinner(obj3)).toBe("0");
+  });
+
+  test("it returns X if X player has the diagonal complete", () => {
+    const obj1 = [
+      ["X", "0", "0"],
+      [null, "X", "0"],
+      ["X", "0", "X"]
+    ];
+    const obj2 = [
+      [null, "0", "X"],
+      ["X", "X", "null"],
+      ["X", "X", "0"]
+    ];
+    expect(findWinner(obj1)).toBe("X");
+    expect(findWinner(obj2)).toBe("X");
   });
 });

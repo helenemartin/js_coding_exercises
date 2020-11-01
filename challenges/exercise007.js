@@ -126,7 +126,7 @@ const findWinner = board => {
   if (board === undefined) throw new Error("board is required");
   let winner = "no winner";
 
-  // Checking Rows
+  // Check the rows
   for (let i = 0; i < board.length; i++) {
     let sum = 1;
     for (let j = 1; j < board[i].length; j++) {
@@ -139,8 +139,60 @@ const findWinner = board => {
     }
   }
 
-  // Checking Columns
+  // Check the columns
   if (winner === "no winner") {
+    let j = 0;
+    let i = 0;
+    do {
+      let sum = 1;
+
+      for (i = 0; i < board.length - 1; i++) {
+
+        if (board[i][j] === board[i + 1][j]) {
+          sum += 1;
+        }
+        if (sum === board[i].length) {
+          winner = board[0][j];
+        }
+      }
+      j++;
+    } while (j < board[i].length);
+  }
+
+  // Check the diagonals (left to right)
+  if (winner === "no winner") {
+    let sum = 1;
+    let i = 0;
+    let j = 0;
+
+    do {
+      if (board[i][j] === board[i + 1][j + 1]) {
+        sum += 1;
+      }
+      if (sum === board[i].length) {
+        winner = board[i][j];
+      }
+      i++;
+      j++;
+    } while ((i < board[i].length - 1) && (j < board[i].length - 1));
+  }
+
+  // Check the diagonals (right to left)
+  if (winner === "no winner") {
+    let sum = 1;
+    let i = 0;
+    let j = board[i].length - 1;
+
+    do {
+      if (board[i][j] === board[i + 1][j - 1]) {
+        sum += 1;
+      }
+      if (sum === board[i].length) {
+        winner = board[i][j];
+      }
+      i++;
+      j--;
+    } while ((i < board[i].length - 1) && (j < board[i].length - 1));
   }
 
   return winner;
