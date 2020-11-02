@@ -126,41 +126,6 @@ const areWeCovered = (staff, day) => {
   });
   return count >= 3;
 };
-describe("createMatrix", () => {
-  test("return error with empty arguments", () => {
-    expect(() => {
-      createMatrix();
-    }).toThrow("n is required");
-    expect(() => {
-      createMatrix(3);
-    }).toThrow("fill is required");
-    expect(() => {
-      createMatrix("foo");
-    }).toThrow("a number is required");
-  });
-  test("return error if n is not a positive integer", () => {
-    expect(() => {
-      createMatrix(0);
-    }).toThrow("n must be a positive integer");
-    expect(() => {
-      createMatrix(-2);
-    }).toThrow("n must be a positive integer");
-    expect(() => {
-      createMatrix(3.5);
-    }).toThrow("n must be a positive integer");
-  });
-  test("return array with one element", () => {
-    const array1x1 = [["foo"]];
-    expect(createMatrix(1, "foo")).toEqual(array1x1);
-  });
-  test("return array with multiple elements", () => {
-    const array2x2 = [
-      ["foo", "foo"],
-      ["foo", "foo"]
-    ];
-    expect(createMatrix(2, "foo")).toEqual(array2x2);
-  });
-});
 
 module.exports = {
   sumMultiples,
